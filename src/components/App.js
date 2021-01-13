@@ -7,9 +7,11 @@ to pass down the store as props which will be tedious when we have to many compo
 about the slice of the store tree we want in that callback too
  */
 
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import Nav from './Nav'
+import LoginPage from './LoginPage';
 
 class App extends Component {
 
@@ -19,11 +21,23 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        Starter Code
-      </div>
+      <Fragment>
+        <Nav />
+        <div className="site">
+        {this.props.loading === true
+          ? <LoginPage />
+        : <div> Logged IN</div>
+        }
+        </div>
+      </Fragment>
     )
   }
 }
 
-export default connect()(App) 
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App) 
