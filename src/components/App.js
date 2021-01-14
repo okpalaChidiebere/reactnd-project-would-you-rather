@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
 import LoginPage from './LoginPage';
+import Dashboard from './Dashboard'
 
 class App extends Component {
 
@@ -26,7 +27,7 @@ class App extends Component {
         <div className="site">
         {this.props.loading === true
           ? <LoginPage />
-        : <div> Logged IN</div>
+        : <Dashboard />
         }
         </div>
       </Fragment>
