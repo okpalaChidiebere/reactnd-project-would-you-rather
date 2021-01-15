@@ -218,8 +218,10 @@ li {
   cursor: pointer;
 }
 
-.vote-results {
+.vote-results,
+.vote-question {
   border-left: 1px solid #cccccc;
+  padding-left: 10px;
 }
 
 .vote-option-result {

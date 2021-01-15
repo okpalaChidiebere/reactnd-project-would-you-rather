@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { isAnswered as handleIsAnswerd } from '../utils/helper'
 import PollResults from './PollResults';
+import PollQuestion from './PollQuestion'
 
 class PollDetails extends Component {
 
@@ -18,14 +19,20 @@ class PollDetails extends Component {
 
         return(
             <div className="poll-information">
-			<h4 className="poll-information-header">{`Asked by ${name}`}</h4>
+			<h4 className="poll-information-header">
+                {isAnswerd
+                ?`Asked by ${name}`
+                :`${name} asks:`}
+            </h4>
 			<div className="poll-information-info-cover">
 				<div className="poll-user-image">
 					<img src={avatarURL} alt={avatarURL} />
 				</div>
 				<div className="poll-short-question">
                     {!isAnswerd
-                    ? <div>TODO: Poll Question</div>
+                    ? <PollQuestion 
+                    question_id={question_id}
+                    />
                     : <PollResults 
                     question_id={question_id}
                     />}
