@@ -13,6 +13,7 @@ import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard'
+import PollDetails from './PollDetails'
 
 class App extends Component {
 
@@ -27,7 +28,7 @@ class App extends Component {
         <div className="site">
         {this.props.loading === true
           ? <LoginPage />
-        : <Dashboard />
+        : <PollDetails match={{params: {question_id: '6ni6ok3ym7mf1p33lnez'}}} />
         }
         </div>
       </Fragment>

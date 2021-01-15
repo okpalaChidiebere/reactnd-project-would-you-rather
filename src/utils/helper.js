@@ -10,3 +10,10 @@ export function add3Dots(string, limit)
  
     return string;
 }
+
+export const isAnswered = (questions, questionId, authedUser) => {
+
+  return questions[questionId].optionOne.votes.includes(authedUser) 
+  || questions[questionId].optionTwo.votes.includes(authedUser)
+}
+

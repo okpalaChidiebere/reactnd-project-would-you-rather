@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Poll from './Poll'
+import { isAnswered } from '../utils/helper'
 
 class Dashboard extends Component {
 
@@ -24,15 +25,11 @@ class Dashboard extends Component {
     render() {
 
         const { listUnAnswered } = this.state
-        const { answerdQuestions, questions } = this.props
-
-        const isAnswered = (question) => {
-            return Object.keys(answerdQuestions).find((questionId) => questionId === question)?true:false
-        }
+        const { questions, authedUser, users } = this.props
 
         const pollList = listUnAnswered 
-        ? Object.values(questions).filter(question => !isAnswered(question.id))
-        : Object.values(questions).filter(question => isAnswered(question.id))
+        ? Object.values(questions).filter(question => !isAnswered(questions, question.id, authedUser))
+        : Object.values(questions).filter(question => isAnswered(questions, question.id, authedUser))
 
         //console.log(this.props) //to check the props we reured from mapStateToProps is what we want
       return (
@@ -44,7 +41,14 @@ class Dashboard extends Component {
 	        {/*JSON.stringify(pollList)*/}
 			<div className="tabcontent">
 				    <ul>
-				        {pollList.map( poll => (
+                        {Object.values(pollList)
+                        .map(question => ({ 
+                            ...question, 
+                            avatarURL: users[question.author].avatarURL, //add the author's avatar for this poll to the question
+                            name: users[question.author].name, //add the author's name for this poll to the question
+                        }))
+                        .sort((a,b) => b.timestamp - a.timestamp) //sort by the most recently created (top) to the least recently created (bottom)
+                        .map( poll => (
                         <li key={poll.id}>
 					        <Poll poll={poll} />
 				        </li>
@@ -57,12 +61,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = ({ questions, authedUser, users }) => ({
-    answerdQuestions: users[authedUser].answers,
-    questions: Object.values(questions).map(question => ({ 
-        ...question, 
-        avatarURL: users[question.author].avatarURL,
-        name: users[question.author].name,
-    })).sort((a,b) => b.timestamp - a.timestamp), //sort by the most recently created (top) to the least recently created (bottom)
+    questions,
+    authedUser,
+    users,
 })
 
 export default connect(mapStateToProps)(Dashboard) 

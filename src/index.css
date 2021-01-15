@@ -200,7 +200,7 @@ li {
 
 .poll-short-question {
   flex: 3;
-  border-left: 1px solid #cccccc;
+  /*border-left: 1px solid #cccccc;*/
   padding-left: 10px;
   text-align: left;
 }
@@ -216,4 +216,46 @@ li {
   color: #33cc33;
   width: 90%;
   cursor: pointer;
+}
+
+.vote-results {
+  border-left: 1px solid #cccccc;
+}
+
+.vote-option-result {
+  height: 100px;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  border: 2px solid #33cc33;
+  border-radius: 5px;
+}
+
+.vote-result-percentage {
+  background-color: #cccccc;
+  border-radius: 3px;
+  border-width: 0px;
+  /* (height of inner div) / 2 + padding */
+  padding: 3px;
+}
+
+.vote-result-percentage > div {
+  background-color: #33cc33;
+  /* Adjust with JavaScript */
+  height: 20px;
+  border-radius: 3px;
+}
+
+.option-result-your-vote {
+  width: 40px;
+  height: auto;
+  background: #fc0;
+  color: #fff;
+  padding: 5px 2px;
+  text-align: center;
+  top: calc(5% - 20px);
+  right: -15px;
+  border-radius: 50%;
+  position: absolute;
+  display: block;
 }
