@@ -181,6 +181,7 @@ li {
 .leaderboard-container {
   border: 2px solid #cccccc;
   border-radius: 5px;
+  margin: 10px;
 }
 
 .poll-information-info-cover {
@@ -260,4 +261,33 @@ li {
   border-radius: 50%;
   position: absolute;
   display: block;
+}
+
+.leaderboard-user-information {
+  flex: 2;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  padding: 0 10px;
+  margin-left: 10px;
+}
+
+.leaderboard-score {
+  flex: 1;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.score-number {
+  width: 4em;
+  height: 4em;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0.1em auto;
+  /*background: green;*/
+  color: #800;
+  line-height: 4;
+  border-radius: 50%;
 }
