@@ -11,12 +11,13 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard'
 import PollDetails from './PollDetails'
 import LeaderBoardPage from './LeaderBoardPage'
 import NewQuestionPage from './NewQuestionPage'
+import NotFoundPage from './NotFoundPage'
 
 class App extends Component {
 
@@ -33,10 +34,13 @@ class App extends Component {
         {this.props.notLoggedIn === true
           ? <LoginPage />
         : <div>
-          <Route path='/' exact component={Dashboard} />
-          <Route path='/questions/:question_id' component={PollDetails} />
-          <Route path='/add' component={NewQuestionPage} />
-          <Route path='/leaderboard' component={LeaderBoardPage}/>
+          <Switch>
+            <Route path='/' exact component={Dashboard} />
+            <Route path='/questions/:question_id' component={PollDetails} />
+            <Route path='/add' component={NewQuestionPage} />
+            <Route path='/leaderboard' component={LeaderBoardPage}/>
+            <Route component={NotFoundPage} />
+          </Switch>
         </div>
         }
         </div>

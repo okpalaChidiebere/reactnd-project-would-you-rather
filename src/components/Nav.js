@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
 
 class Nav extends Component {
@@ -12,7 +12,11 @@ class Nav extends Component {
         user: PropTypes.object,
     }
 
-    redirect = () => <Redirect to='/' />
+    handleNavigation = (event) => {
+        if (!this.props.user) {
+          event.preventDefault()
+        }
+    }
 
     render() {
 
@@ -21,9 +25,21 @@ class Nav extends Component {
         return(
             <div className="nav-container">
                 <nav>
-                    <li><NavLink to='/' exact activeClassName='active'>Home</NavLink></li>
-                    <li><NavLink to='/add' activeClassName='active'>New Question</NavLink></li>
-                    <li><NavLink to='/leaderboard' activeClassName='active'>Leaderboard</NavLink></li>
+                    <li>
+                        <NavLink to='/' 
+                        onClick={this.handleNavigation}
+                        exact activeClassName='active'>Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/add' 
+                        onClick={this.handleNavigation}
+                        activeClassName='active'>New Question</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/leaderboard' 
+                        onClick={this.handleNavigation}
+                        activeClassName='active'>Leaderboard</NavLink>
+                    </li>
                     <li></li>
                     {user !== null &&
                     <nav>
