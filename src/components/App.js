@@ -15,6 +15,7 @@ import LoginPage from './LoginPage';
 import Dashboard from './Dashboard'
 import PollDetails from './PollDetails'
 import LeaderBoardPage from './LeaderBoardPage'
+import NewQuestionPage from './NewQuestionPage'
 
 class App extends Component {
 
@@ -29,7 +30,7 @@ class App extends Component {
         <div className="site">
         {this.props.loading === true
           ? <LoginPage />
-        : <PollDetails match={{params: {question_id: '6ni6ok3ym7mf1p33lnez'}}}/>
+        : <NewQuestionPage />
         }
         </div>
       </Fragment>

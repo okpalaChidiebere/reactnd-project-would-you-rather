@@ -1,6 +1,7 @@
 export const GET_QUESTIONS = 'GET_QUESTIONS'
 export const UPDATE_QUESTION_VOTE = 'UPDATE_QUESTION_VOTE'
 export const REMOVE_QUESTION_VOTE = 'REMOVE_QUESTION_VOTE'
+export const ADD_QUESTION = 'ADD_QUESTION'
 
 
 //get questions action creator
@@ -23,4 +24,9 @@ export const removeQuestionVote = ({ authedUser, qid, answer }) => ({
   authedUser,
   qid,
   answer
+})
+
+export const addQuestion = (question) => ({
+  type: ADD_QUESTION,
+  question,
 })

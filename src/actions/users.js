@@ -1,6 +1,8 @@
 export const GET_USERS = 'GET_USERS'
 export const UPDATE_USER_ANSWERS = 'UPDATE_USER_ASNWERS'
 export const REMOVE_USER_ANSWERS = 'REMOVE_USER_ASNWERS'
+export const ADD_QUESTION = 'ADD_QUESTION'
+
 
 export function getUsers (users) {
   return {
@@ -22,3 +24,12 @@ export const removeUserAnswers = ({ authedUser, qid, answer }) => ({
   qid,
   answer
 })
+
+export const addQuestion = (question) => {
+  //console.log(questionId)
+
+  return{
+    type: ADD_QUESTION,
+    question,
+  }
+}

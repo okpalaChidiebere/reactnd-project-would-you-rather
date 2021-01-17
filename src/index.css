@@ -203,6 +203,7 @@ li {
   flex: 3;
   /*border-left: 1px solid #cccccc;*/
   padding-left: 10px;
+  padding-right: 10px;
   text-align: left;
 }
 
@@ -300,4 +301,58 @@ li {
   line-height: 0px;
   float: left;
   position: absolute;
+}
+
+.new-question-header{
+  text-align: center;
+  margin: 0;
+  padding: 15px;
+  border-bottom: 1px solid #cccccc;
+  letter-spacing: 0.1em;
+}
+
+.new-question-form input {
+  display: inline-block;
+  width: 95%;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 10px;
+  border: 1px solid;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 2px solid #ccc;
+  font-size: 13px;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(252,252,252,1);
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+  outline: none;
+}
+
+.orText{
+  text-align: center;
+  position: relative;
+}
+
+.orText::after{
+  content: "";
+  border-bottom: 2px solid #ccc;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.orText span{
+  padding: 0 8px;
+  background-color: white;
+  position: relative;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

@@ -1,4 +1,5 @@
-import { GET_USERS, UPDATE_USER_ANSWERS, REMOVE_USER_ANSWERS } from '../actions/users'
+import { GET_USERS, UPDATE_USER_ANSWERS, 
+  REMOVE_USER_ANSWERS, ADD_QUESTION } from '../actions/users'
 
 export default function users (state = {}, action) {
   switch(action.type) {
@@ -49,6 +50,26 @@ export default function users (state = {}, action) {
         [authedUser]: user,
       }
 
+    }
+
+    case ADD_QUESTION : {
+
+      const { question } = action
+
+      let user = {
+        [question.author]: {
+          ...state[question.author],
+          questions: [ //questions is an array
+            ...state[question.author].questions,
+            question.id
+          ]
+        }
+      }
+
+      return{
+        ...state,
+        ...user,
+      }
     }
 
     default :

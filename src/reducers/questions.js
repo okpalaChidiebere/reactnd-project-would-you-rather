@@ -1,4 +1,5 @@
-import { GET_QUESTIONS, UPDATE_QUESTION_VOTE, REMOVE_QUESTION_VOTE } from '../actions/questions'
+import { GET_QUESTIONS, UPDATE_QUESTION_VOTE, 
+  REMOVE_QUESTION_VOTE, ADD_QUESTION } from '../actions/questions'
 
 export default function questions (state = {}, action) {
   switch(action.type) {
@@ -58,6 +59,16 @@ export default function questions (state = {}, action) {
       return {
         ...state, //keep other question as they were 
         ...question, //spread the modified question across our new question state
+      }
+    }
+
+    case ADD_QUESTION : {
+
+      const { question } = action
+      console.log(question)
+      return{
+        ...state,
+        [question.id]: question,
       }
     }
     

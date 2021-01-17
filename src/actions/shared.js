@@ -1,7 +1,9 @@
 import { getInitialData } from '../api/api'
-import { getUsers, updateUserAnswers, removeUserAnswers } from './users'
-import { getQuestions, updateQuestionVote, removeQuestionVote } from './questions'
-import { saveQuestionAnswer } from '../api/api'
+import { getUsers, updateUserAnswers, removeUserAnswers, 
+  addQuestion as addUserQuestion } from './users'
+import { getQuestions, updateQuestionVote, removeQuestionVote, addQuestion } from './questions'
+import { saveQuestionAnswer, saveQuestion } from '../api/api'
+
 
 
 export const handleInitialData = () => async (dispatch) => {
@@ -32,3 +34,21 @@ export const handleVoteQuestion = (info) => async (dispatch) => {
       alert('There was an error voting for this question. Try again.')
     }
   }
+
+export const handleAddQuestion = ( optionOneText, optionTwoText ) => async (dispatch, getState) => {
+
+  const { authedUser } = getState() //getState method returns the current state of our store
+
+  try {
+    /*We are using Optimistic Updates in this operation */
+
+    const question = await saveQuestion({optionOneText, optionTwoText, author: authedUser})
+    console.log(question)
+    dispatch(addQuestion(question))
+    dispatch(addUserQuestion(question))
+  
+    }catch(e){
+      console.warn('Error in handleAddQuestion: ', e)
+      alert('There was an error adding new quesion. Try again.')
+    }
+}
