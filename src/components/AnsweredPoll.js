@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const AnsweredPoll = ({isYourVote, text, votedOption, totalNumOfVotes}) => {
 
-    const percentageVoteOption = (votedOption/totalNumOfVotes) * 100
+    const percentageVoteOption = parseInt((votedOption/totalNumOfVotes) * 100)
 
     return (
         <div className="vote-option-result" style={{background: isYourVote?"#d6f5d6":null}}>

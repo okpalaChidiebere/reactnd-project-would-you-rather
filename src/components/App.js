@@ -29,7 +29,7 @@ class App extends Component {
         <div className="site">
         {this.props.loading === true
           ? <LoginPage />
-        : <LeaderBoardPage />
+        : <PollDetails match={{params: {question_id: '6ni6ok3ym7mf1p33lnez'}}}/>
         }
         </div>
       </Fragment>

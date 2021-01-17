@@ -1,4 +1,4 @@
-import { GET_USERS } from '../actions/users'
+import { GET_USERS, UPDATE_USER_ANSWERS, REMOVE_USER_ANSWERS } from '../actions/users'
 
 export default function users (state = {}, action) {
   switch(action.type) {
@@ -7,6 +7,50 @@ export default function users (state = {}, action) {
         ...state,
         ...action.users
       }
+
+    case UPDATE_USER_ANSWERS : {
+
+      const { authedUser, qid, answer } = action
+
+      let user = {}
+      if(qid != null){
+
+        user = {
+          [authedUser]: {
+            ...state[authedUser],
+            answers: {
+              ...state[authedUser].answers,
+              [qid]: answer
+            }
+          }
+        }
+      }
+
+      return{
+        ...state,
+        ...user,
+      }
+    }
+
+    case REMOVE_USER_ANSWERS : {
+
+      const { authedUser, qid } = action
+
+      let filteredAnswers = {...state[authedUser].answers}
+      delete filteredAnswers[qid]
+
+      const user = {
+        ...state[authedUser],
+        answers: filteredAnswers
+      }
+      
+      return{
+        ...state,
+        [authedUser]: user,
+      }
+
+    }
+
     default :
       return state
   }

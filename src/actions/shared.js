@@ -1,6 +1,7 @@
 import { getInitialData } from '../api/api'
-import { getUsers } from './users'
-import { getQuestions } from './questions'
+import { getUsers, updateUserAnswers, removeUserAnswers } from './users'
+import { getQuestions, updateQuestionVote, removeQuestionVote } from './questions'
+import { saveQuestionAnswer } from '../api/api'
 
 
 export const handleInitialData = () => async (dispatch) => {
@@ -14,4 +15,20 @@ export const handleInitialData = () => async (dispatch) => {
         console.warn('ERROR!', e)
         alert("Error fetching data")
     }
-} 
+}
+
+export const handleVoteQuestion = (info) => async (dispatch) => {
+
+    try {
+      /*We are using Optimistic Updates in this operation */
+      dispatch(updateQuestionVote(info))
+      dispatch(updateUserAnswers(info))
+      await saveQuestionAnswer(info)
+  
+    }catch(e){
+      console.warn('Error in handleVoteQuestion: ', e)
+      dispatch(removeQuestionVote(info)) //we dispatch remove so that it will reset back to what it initially was
+      dispatch(removeUserAnswers(info))
+      alert('There was an error voting for this question. Try again.')
+    }
+  }
