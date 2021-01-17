@@ -35,7 +35,13 @@ export const handleVoteQuestion = (info) => async (dispatch) => {
     }
   }
 
-export const handleAddQuestion = ( optionOneText, optionTwoText ) => async (dispatch, getState) => {
+/**
+ * 
+ * @param {*} param0 
+ * expects an aobject as parameter with optionOneText and optionTwoText as keys
+ * So we destruct the object below
+ */
+export const handleAddQuestion = ({ optionOneText, optionTwoText }) => async (dispatch, getState) => {
 
   const { authedUser } = getState() //getState method returns the current state of our store
 

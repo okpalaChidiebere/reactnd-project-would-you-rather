@@ -15,8 +15,8 @@ class LeaderBoardPage extends Component{
         const leaderBoardList = Object.values(users).map(({name, avatarURL, answers, questions}) => (Object.assign({},{
             name,
             avatarURL,
-            questionAskedCount: Object.keys(answers).length,
-            questionAnsweredCount: questions.length,
+            questionAskedCount: questions.length,
+            questionAnsweredCount: Object.keys(answers).length,
         })))
         //Users should be ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered.
         .sort((a,b) => (b.questionAnsweredCount + b.questionAskedCount) - (a.questionAnsweredCount + a.questionAskedCount))
