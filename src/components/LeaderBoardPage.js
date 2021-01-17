@@ -1,21 +1,12 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import ColorThief from 'colorthief'
+import TestColor from './TestColor'
 
 class LeaderBoardPage extends Component{
 
-    state = {
-        colorImages: [],
-    }
-
-    handleImage = (ref) => {
-        const colorThief = new ColorThief()
-         const img = ref
-        const result = `rgb(${colorThief.getColor(img, 25).join(',')})` 
-        this.setState(curr => ({
-            colorImages: [...curr.colorImages, result]
-        }))
+    static propTypes = {
+        users: PropTypes.object.isRequired,
     }
 
     render(){
@@ -27,21 +18,18 @@ class LeaderBoardPage extends Component{
             questionAskedCount: Object.keys(answers).length,
             questionAnsweredCount: questions.length,
         })))
-//"https://placekitten.com/408/287"
+        //Users should be ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered.
+        .sort((a,b) => (b.questionAnsweredCount + b.questionAskedCount) - (a.questionAnsweredCount + a.questionAskedCount))
 
         return(
             <div>
-                {JSON.stringify(this.state)}
                 {
-                leaderBoardList.map((entry, index) => 
+                leaderBoardList.map((entry, index) => (
                     (<div className="leaderboard-container" key={index}>
+                        <TestColor key={index} imgSrc={entry.avatarURL}/>
                         <div className="poll-information-info-cover">
                             <div className="poll-user-image">
-                                <img
-                                crossOrigin={"anonymous"}
-                                ref={(img) => this.imageRef = img} 
-                                src={entry.avatarURL} alt={"example"} style={{margin: '1em auto'}}
-                                onLoad={() => this.handleImage(this.imageRef)}/>       
+                                <img src={entry.avatarURL} alt={"example"} style={{margin: '1em auto'}}/>       
 			                </div>
                             <div className="leaderboard-user-information">
                                 <h2>{entry.name}</h2>
@@ -54,17 +42,18 @@ class LeaderBoardPage extends Component{
                             </div>
                             <div className="leaderboard-score">
                                 <div className="score-container">
-                                    <div style={{textAlign: 'center', border: '1px solid #cccccc', margin: '1em auto',}}>
+                                    <div style={{textAlign: 'center', margin: '1em auto',}}>
                                     score
 				                    </div>
-                                    <div className="score-number" style={{background: this.state.colorImages[index]}}>
+                                    <div className="score-number" >
                                     {(entry.questionAnsweredCount + entry.questionAskedCount)}
                                     </div> 
                                 </div>
                             </div> 
 			            </div>
                     </div>
-                    ))
+                    )
+                ))
                 }
             </div>
         )
