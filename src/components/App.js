@@ -11,6 +11,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard'
 import PollDetails from './PollDetails'
@@ -25,22 +26,29 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
+      <Router>
+        <Fragment>
         <Nav />
         <div className="site">
-        {this.props.loading === true
+        {this.props.notLoggedIn === true
           ? <LoginPage />
-        : <NewQuestionPage />
+        : <div>
+          <Route path='/' exact component={Dashboard} />
+          <Route path='/questions/:question_id' component={PollDetails} />
+          <Route path='/add' component={NewQuestionPage} />
+          <Route path='/leaderboard' component={LeaderBoardPage}/>
+        </div>
         }
         </div>
-      </Fragment>
+        </Fragment>
+      </Router>
     )
   }
 }
 
 function mapStateToProps ({ authedUser }) {
   return {
-    loading: authedUser === null
+    notLoggedIn: authedUser === null
   }
 }
 

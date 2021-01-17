@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { NavLink, Redirect } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
 
 class Nav extends Component {
@@ -11,6 +12,8 @@ class Nav extends Component {
         user: PropTypes.object,
     }
 
+    redirect = () => <Redirect to='/' />
+
     render() {
 
         const { user } = this.props
@@ -18,9 +21,9 @@ class Nav extends Component {
         return(
             <div className="nav-container">
                 <nav>
-                    <li><a className="active" href="#home">Home</a></li>
-                    <li><a href="#news">New Question</a></li>
-                    <li><a href="#contact">Leaderboard</a></li>
+                    <li><NavLink to='/' exact activeClassName='active'>Home</NavLink></li>
+                    <li><NavLink to='/add' activeClassName='active'>New Question</NavLink></li>
+                    <li><NavLink to='/leaderboard' activeClassName='active'>Leaderboard</NavLink></li>
                     <li></li>
                     {user !== null &&
                     <nav>

@@ -33,6 +33,7 @@ class NewQuestionPage extends Component{
             optionTwoText,
         }))
 
+        this.props.history.push(`/`)
     }
 
     render(){

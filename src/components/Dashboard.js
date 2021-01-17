@@ -7,8 +7,9 @@ import { isAnswered } from '../utils/helper'
 class Dashboard extends Component {
 
     static propTypes = {
-        questions: PropTypes.array.isRequired,  //we specifiy this props is required
-        answerdQuestions: PropTypes.object.isRequired
+        questions: PropTypes.object.isRequired,  //we specifiy this props is required
+        users: PropTypes.object.isRequired,
+        authedUser: PropTypes.string.isRequired,
     }
 
     state = {
