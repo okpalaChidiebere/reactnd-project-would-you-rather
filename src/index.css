@@ -3,12 +3,20 @@ body {
   font: 13px Verdana;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
 }
 
 .site {
 	max-width: 560px;
 	margin: 0 auto;
 	padding: 0 1em;
+}
+
+.App-header {
+  background-color: #b3b3b3;
+  text-align: center;
+  padding: 3px 0px;
 }
 
 /* Navigation bar */

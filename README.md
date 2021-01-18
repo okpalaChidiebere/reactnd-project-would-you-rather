@@ -68,3 +68,52 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Hierachy of Components
+```bash
+├── CONTRIBUTING.md
+├── README.md - This file.
+├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
+├── public
+│   ├── favicon.ico # React Icon, You may change if you wish.
+│   └── index.html # DO NOT MODIFY
+└── src
+    ├──api
+    |   ├── _DATA.js  #FAKE database
+    │   └── api.js # A JavaScript API that i made to interact with the fake database backend.
+    ├── components
+    │    ├── App.js #Root of our app
+    │    ├── Dashboard.js 
+    |    |    └── Poll.js
+    │    ├── LoginPage.js 
+    │    ├── NewQuestionPage.js 
+    │    ├── PollDetails.js 
+    |    |     ├── PollQuestion.js
+    |    |     └── PollResults
+    |    |          └──AnsweredPoll
+    │    ├── LeaderBoard.js
+    |    |    └── TestColor #used for some color thief pkg implementation
+    │    ├── Nav.js  
+    │    └── NotFoundPage.js #This component shows when the user enters an invalid endpoint
+    ├── icons # Helpful images for your app. Use at your discretion.
+    │   └── logo.svg
+    ├── reducers
+    |    ├── index.js  # default export file for this folder
+    |    ├── authedUser.js
+    |    ├── questions.js
+    |    └── users.js
+    ├── actions 
+    |    ├── index.js # default export file for this folder
+    |    ├── authedUser.js
+    |    ├── questions.js
+    |    └── users.js
+    ├── middleware 
+    |    ├── index.js #default export file for this folder
+    |    └── logger.js  #used for debugging
+    ├── index.css # Global styles. You probably won't need to change anything here.
+    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+```
+
+More techniques on using form in in react
+https://stackoverflow.com/questions/54254028/react-radio-buttons-update-state

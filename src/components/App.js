@@ -29,6 +29,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+          <header className="App-header"><span>React App</span></header>
         <Nav />
         <div className="site">
         {this.props.notLoggedIn === true
