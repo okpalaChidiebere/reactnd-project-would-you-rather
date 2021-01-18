@@ -9,19 +9,19 @@ import NotFoundPage from './NotFoundPage'
 class PollDetails extends Component {
 
     static propTypes = {
-        question_id: PropTypes.string.isRequired, 
-        isAnswerd: PropTypes.bool.isRequired, 
-        name: PropTypes.string.isRequired, 
-        avatarURL: PropTypes.string.isRequired,
+        question_id: PropTypes.string, 
+        isAnswerd: PropTypes.bool, 
+        name: PropTypes.string, 
+        avatarURL: PropTypes.string,
     }
 
     render(){
 
-        if(!this.props.question_id){
+        const { question_id, isAnswerd, name, avatarURL } = this.props
+
+        if(!question_id){
             return <NotFoundPage />
         }
-
-        const { question_id, isAnswerd, name, avatarURL } = this.props
 
         return(
             <div className="poll-information">
@@ -53,21 +53,15 @@ const mapStateToProps = ({ questions, users, authedUser }, ownProps ) => {
 
     const { question_id } = ownProps.match.params
     const question = questions[question_id]
-    
-    //we return early when question is undefined
-    if(!question){
-        return{
-            question_id: null,
-        }
-    }
 
-    const isAnswerd = handleIsAnswerd(questions, question_id, authedUser)
+    const isAnswerd = question?handleIsAnswerd(questions, question_id, authedUser):null
 
+    //we return null for every props key when question is undefined. eg /questions/someinvalidurl
     return{
         isAnswerd,
-        question_id: question_id?question_id:null,
-        avatarURL: users[question.author].avatarURL,
-        name: users[question.author].name,
+        question_id: question?question_id:null,
+        avatarURL: question?users[question.author].avatarURL:null,
+        name: question?users[question.author].name:null,
     }
 }
 
