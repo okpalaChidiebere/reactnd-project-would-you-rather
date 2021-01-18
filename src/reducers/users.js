@@ -1,5 +1,5 @@
 import { GET_USERS, UPDATE_USER_ANSWERS, 
-  REMOVE_USER_ANSWERS, ADD_QUESTION } from '../actions/users'
+  REMOVE_USER_ANSWERS, ADD_USER_QUESTION } from '../actions/users'
 
 export default function users (state = {}, action) {
   switch(action.type) {
@@ -52,7 +52,7 @@ export default function users (state = {}, action) {
 
     }
 
-    case ADD_QUESTION : {
+    case ADD_USER_QUESTION : {
 
       const { question } = action
 

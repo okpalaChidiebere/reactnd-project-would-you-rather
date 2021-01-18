@@ -1,8 +1,12 @@
+import karen from '../icons/karen.jpg'
+import tyler from '../icons/tyler.jpg'
+import richard from '../icons/richard.jpg'
+
 let users = {
     sarahedo: {
       id: 'sarahedo',
       name: 'Sarah Edo',
-      avatarURL: "https://loremflickr.com/cache/resized/65535_40768199553_f2a99755ff_320_240_nofilter.jpg",
+      avatarURL: karen,
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
         "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,7 +18,7 @@ let users = {
     tylermcginnis: {
       id: 'tylermcginnis',
       name: 'Tyler McGinnis',
-      avatarURL: "https://loremflickr.com/cache/resized/65535_48012779508_f5389c8135_320_240_nofilter.jpg",
+      avatarURL: tyler,
       answers: {
         "vthrdm985a262al8qx3do": 'optionOne',
         "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +28,7 @@ let users = {
     johndoe: {
       id: 'johndoe',
       name: 'John Doe',
-      avatarURL: "https://loremflickr.com/cache/resized/65535_48012627011_77e36cf07d_320_240_nofilter.jpg",
+      avatarURL: richard,
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
         "vthrdm985a262al8qx3do": 'optionTwo',

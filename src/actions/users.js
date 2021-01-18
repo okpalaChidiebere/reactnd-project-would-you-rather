@@ -1,7 +1,7 @@
 export const GET_USERS = 'GET_USERS'
 export const UPDATE_USER_ANSWERS = 'UPDATE_USER_ASNWERS'
 export const REMOVE_USER_ANSWERS = 'REMOVE_USER_ASNWERS'
-export const ADD_QUESTION = 'ADD_QUESTION'
+export const ADD_USER_QUESTION = 'ADD_USER_QUESTION'
 
 
 export function getUsers (users) {
@@ -29,7 +29,7 @@ export const addQuestion = (question) => {
   //console.log(questionId)
 
   return{
-    type: ADD_QUESTION,
+    type: ADD_USER_QUESTION,
     question,
   }
 }

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { isAnswered as handleIsAnswerd } from '../utils/helper'
 import PollResults from './PollResults';
 import PollQuestion from './PollQuestion'
+import NotFoundPage from './NotFoundPage'
 
 class PollDetails extends Component {
 
@@ -15,6 +16,11 @@ class PollDetails extends Component {
     }
 
     render(){
+
+        if(!this.props.question_id){
+            return <NotFoundPage />
+        }
+
         const { question_id, isAnswerd, name, avatarURL } = this.props
 
         return(
@@ -47,6 +53,14 @@ const mapStateToProps = ({ questions, users, authedUser }, ownProps ) => {
 
     const { question_id } = ownProps.match.params
     const question = questions[question_id]
+    
+    //we return early when question is undefined
+    if(!question){
+        return{
+            question_id: null,
+        }
+    }
+
     const isAnswerd = handleIsAnswerd(questions, question_id, authedUser)
 
     return{
